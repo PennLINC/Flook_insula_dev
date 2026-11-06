@@ -1,0 +1,35 @@
+Order to Run scripts from Insula_dev/code
+
+1. HCPD/1_QC_HCPD.R
+2. HCPD/2_Create_insula_ts.sh
+3. HCPD/3_Create_ConnMatrices/HCPD_Timeseries.R (via HCPD_Timeseries_ex.sh)
+	-- Includes docker package neuroimaging_packages_0.0.1.sif from https://hub.docker.com/r/lizzieflook/neuroimaging_packages
+4. HCPD/4_confixel/convert_subject_cor_to_subject_h5.sh
+4.1 HCPD/4_confixel/con_csv_to_h5.py
+4.2 HCPD/4_confixel/make_insula_voxel_h5.py 
+5. HCPD/5_Model_Array_Setup.R
+6. HCPD/6_creating_voxel_h5.py (call files with command line prompts)
+7. HCPD/7_Change_1toNAN/change1toNAN.R (via change1toNAN_ex.sh)
+	-- Includes docker pacakage modelarray_confixel_latest.sif from https://hub.docker.com/r/pennlinc/modelarray_confixel
+
+
+#for ROI Glasser Analysis 
+8. HCPD/8_ROI_GAM/ROI_GAM_SetUp.R (via ROI_GAM_SetUp_Ex.sh)
+8.1 HCPD/8_ROI_GAM/ROI_GAM_and_Spins.R
+
+##for Vertex Level
+9. HCPD/9_LM_Vertex/LM_array.R (run via run_LM_singularity_ex.sh, will run separately for each vertex based on --array call)
+10. HCPD/10_LM_Vertex_Analysis.R
+11. HCPD/11_Microstructure/big_brain_moran.ipynb
+11.1 HCPD/11_Microstructure/big_brain_moran.py
+11.2. HCPD/11_Microstructure/HistologyComp.R
+
+#comparison to HCPYA
+##HCP-YA downloaded as Glasser connectivity matrices after already completed careful QC and sample selection 
+1. HCP-YA/1_HCP_YA_Glasser_avg.R
+2. HCP-YA/2_HCPD_Avg.R
+3. HCP-YA/3_Avg_Connectivity_Comp.R
+
+#subcortex
+1. Subcortical/Subcortex_Setup.R (via 1_Subcortex_SetUp_Ex.sh, need to manually update Subcortex_Setup.R for all 5 Subcortex.R files)
+2. Subcortical/2_Subcortical_GAM.R
